@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🛒 Web Scraper Results Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #111;
+      color: #eee;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    h1 {
+      color: #ffc107;
+      font-weight: 700;
+    }
+    .table-container {
+      background-color: #f9f9f9;
+      color: #111;
+      border-radius: 10px;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-4">
+    <div class="text-center mb-4">
+      <h1>🛒 Web Scraper Results Dashboard</h1>
+      <p class="text-secondary">Showing results for <b>samsung s23</b></p>
+      <p><small>Generated: 2025-11-11 09:54:02</small></p>
+    </div>
+
+    <div class="mb-3 text-center">
+      <button id="lowHigh" class="btn btn-success btn-sm me-2">Sort by Price: Low → High</button>
+      <button id="highLow" class="btn btn-danger btn-sm">Sort by Price: High → Low</button>
+    </div>
+
+    <div class="table-container">
+      <table class="dataframe table table-striped table-bordered">
+  <thead>
+    <tr style="text-align: right;">
+      <th>No</th>
+      <th>id</th>
+      <th>site</th>
+      <th>name</th>
+      <th>price</th>
+      <th>store</th>
+      <th>scraped_at</th>
+      <th>price_value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>749</td>
+      <td>Google Shopping</td>
+      <td>Samsung S23 Ultra</td>
+      <td>₹62,000</td>
+      <td>Maccellservice</td>
+      <td>2025-11-11T09:52:33.880692</td>
+      <td>62000.0</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>748</td>
+      <td>Google Shopping</td>
+      <td>Samsung S23 Ultra</td>
+      <td>₹62,000</td>
+      <td>Maccellservice Ultra</td>
+      <td>2025-11-11T09:52:33.863025</td>
+      <td>62000.0</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>728</td>
+      <td>Google Shopping</td>
+      <td>Samsung S23 Ultra Withframe 6.9 Oled Purple Display</td>
+      <td>₹16,200</td>
+      <td>UV Folder</td>
+      <td>2025-11-11T09:52:12.382349</td>
+      <td>16200.0</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>719</td>
+      <td>Google Shopping</td>
+      <td>Samsung S23 Ultra Withframe 6.9 Oled Purple Display</td>
+      <td>₹749</td>
+      <td>Sprig</td>
+      <td>2025-11-11T09:52:12.182645</td>
+      <td>749.0</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>660</td>
+      <td>Amazon India</td>
+      <td>samsung s23 ultra 5g</td>
+      <td>₹34,999</td>
+      <td>Amazon</td>
+      <td>2025-11-11T09:50:16.427055</td>
+      <td>34999.0</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>652</td>
+      <td>Amazon India</td>
+      <td>samsung s23 ultra 5g</td>
+      <td>₹61,990</td>
+      <td>Amazon</td>
+      <td>2025-11-11T09:49:53.350288</td>
+      <td>61990.0</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>651</td>
+      <td>Amazon India</td>
+      <td>samsung s23 ultra 5g</td>
+      <td>₹500</td>
+      <td>Amazon</td>
+      <td>2025-11-11T09:49:53.307975</td>
+      <td>500.0</td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      var table = $('table').DataTable({
+        pageLength: 15,
+        order: [],
+        columnDefs: [
+          {
+            targets: -1, // last column = price_value
+            visible: false,
+            searchable: false,
+            type: 'num'
+          }
+        ]
+      });
+
+      // Sort buttons
+      $('#lowHigh').on('click', function() {
+        table.order([table.columns().count() - 1, 'asc']).draw();
+      });
+      $('#highLow').on('click', function() {
+        table.order([table.columns().count() - 1, 'desc']).draw();
+      });
+    });
+  </script>
+</body>
+</html>
